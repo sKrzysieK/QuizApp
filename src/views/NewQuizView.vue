@@ -2,38 +2,8 @@
   <h3>Create your own quiz!</h3>
   <create-quiz-form v-if="loaded">
     <CategorySection :categories="categories" />
-    <!-- <section>
-      <p class="label">Choose your difficulty level:</p>
-      <div id="difficulty_container">
-        <label class="difficulty"
-          ><input
-            type="radio"
-            name="difficulty"
-            id="easy"
-            value="easy"
-          />Easy</label
-        >
-        <label class="difficulty"
-          ><input
-            type="radio"
-            name="difficulty"
-            id="medium"
-            value="medium"
-            checked
-          />Medium</label
-        >
-        <label class="difficulty"
-          ><input
-            type="radio"
-            name="difficulty"
-            id="hard"
-            value="hard"
-          />Hard</label
-        >
-      </div>
-    </section> -->
     <DifficultySection />
-    <section>
+    <!-- <section>
       <p class="label">How many questions do you want?</p>
       <div id="questions_amount">
         <input
@@ -47,7 +17,8 @@
         />
         <p id="questions_amount_counter">{{ questions_quantity }}</p>
       </div>
-    </section>
+    </section> -->
+    <QuestionAmountSection />
     <input type="submit" value="DONE" id="create-quiz_btn" />
   </create-quiz-form>
   <loading-spinner v-else />
@@ -57,8 +28,8 @@
 import LoadingSpinner from "@/components/ui/LoadingSpinner.vue";
 import CreateQuizForm from "@/components/NewQuiz/CreateQuizForm.vue";
 import CategorySection from "@/components/NewQuiz/sections/CategorySection.vue";
-import { mapActions } from "vuex";
 import DifficultySection from "@/components/NewQuiz/sections/DifficultySection.vue";
+import QuestionAmountSection from "@/components/NewQuiz/sections/QuestionAmountSection.vue";
 
 export default {
   data() {
@@ -74,14 +45,13 @@ export default {
     this.categories = data.trivia_categories;
     this.loaded = true;
   },
-  methods: {
-    ...mapActions(["startQuiz"]),
-  },
+  methods: {},
   components: {
     LoadingSpinner,
     CreateQuizForm,
     CategorySection,
     DifficultySection,
+    QuestionAmountSection,
   },
 };
 </script>
@@ -94,7 +64,7 @@ h3 {
   font-size: 2rem;
 }
 
-section {
+/* section {
   width: 100%;
   margin-top: 15px;
   display: flex;
@@ -107,7 +77,6 @@ section {
   font-size: 1.2rem;
   padding: 10px;
   width: 75%;
-  /* height: 30px; */
   color: var(--complementary-color);
   border: none;
   border-top: 2px solid var(--complementary-color);
@@ -115,11 +84,6 @@ section {
   position: relative;
   text-align: center;
 }
-
-/* .difficulty {
-  display: inline;
-  margin: 10px;
-} */
 
 #questions_amount {
   width: 60%;
@@ -143,7 +107,7 @@ section {
   display: flex;
   justify-content: center;
   align-items: center;
-}
+} */
 
 #create-quiz_btn {
   width: 20%;
@@ -164,11 +128,11 @@ section {
   transition: 0.3s ease-in-out;
 }
 
-@media only screen and (min-width: 500px) {
+/* @media only screen and (min-width: 500px) {
   .label {
     font-size: 1.4rem;
   }
-}
+} */
 
 /* Medium screen devices (800px and above) */
 @media only screen and (min-width: 800px) {
@@ -176,7 +140,7 @@ section {
     font-size: 3rem;
   }
 
-  section {
+  /* section {
     width: 100%;
     margin-top: 15px;
   }
@@ -184,14 +148,13 @@ section {
   .label {
     font-size: 1.5rem;
     padding: 10px;
-    /* height: 30px; */
   }
 
   #questions_amount_counter {
     width: 50px;
     aspect-ratio: 1/1;
     font-size: 2rem;
-  }
+  } */
 }
 
 /* Big screen devices (1150px and above) */
@@ -199,7 +162,7 @@ section {
   h3 {
     font-size: 4rem;
   }
-
+  /* 
   section {
     width: 100%;
     margin-top: 15px;
@@ -207,7 +170,6 @@ section {
 
   .label {
     font-size: 1.5rem;
-    /* height: 30px; */
     padding: 10px;
   }
 
@@ -237,6 +199,6 @@ section {
     width: 50px;
     aspect-ratio: 1/1;
     font-size: 2rem;
-  }
+  } */
 }
 </style>
