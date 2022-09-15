@@ -12,7 +12,7 @@
 
 <script>
 import { mapActions } from "vuex";
-import AnswerCard from "./Answers/AnswerCard.vue";
+import AnswerCard from "../QuizComponents/Answers/AnswerCard.vue";
 export default {
   name: "Answers",
   props: {
