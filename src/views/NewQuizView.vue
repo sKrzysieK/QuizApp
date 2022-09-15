@@ -1,26 +1,11 @@
 <template>
-  <h3>Create your own quiz!</h3>
-  <create-quiz-form v-if="loaded">
+  <Slogan>Create your own quiz!</Slogan>
+  <CreateQuizForm v-if="loaded">
     <CategorySection :categories="categories" />
     <DifficultySection />
-    <!-- <section>
-      <p class="label">How many questions do you want?</p>
-      <div id="questions_amount">
-        <input
-          type="range"
-          name="questions_amount"
-          id="questions_amount_input"
-          min="3"
-          max="30"
-          step="1"
-          v-model="questions_quantity"
-        />
-        <p id="questions_amount_counter">{{ questions_quantity }}</p>
-      </div>
-    </section> -->
     <QuestionAmountSection />
-    <input type="submit" value="DONE" id="create-quiz_btn" />
-  </create-quiz-form>
+    <FormSubmitButton />
+  </CreateQuizForm>
   <loading-spinner v-else />
 </template>
 
@@ -30,13 +15,14 @@ import CreateQuizForm from "@/components/NewQuiz/CreateQuizForm.vue";
 import CategorySection from "@/components/NewQuiz/sections/CategorySection.vue";
 import DifficultySection from "@/components/NewQuiz/sections/DifficultySection.vue";
 import QuestionAmountSection from "@/components/NewQuiz/sections/QuestionAmountSection.vue";
+import Slogan from "@/components/NewQuiz/Slogan.vue";
+import FormSubmitButton from "../components/NewQuiz/form/FormSubmitButton.vue";
 
 export default {
   data() {
     return {
       loaded: false,
       categories: [],
-      questions_quantity: 5,
     };
   },
   async created() {
@@ -52,64 +38,14 @@ export default {
     CategorySection,
     DifficultySection,
     QuestionAmountSection,
+    Slogan,
+    FormSubmitButton,
   },
 };
 </script>
 
 <style scoped>
-h3 {
-  width: 100%;
-  text-align: center;
-  margin: 0;
-  font-size: 2rem;
-}
-
-/* section {
-  width: 100%;
-  margin-top: 15px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-.label {
-  font-size: 1.2rem;
-  padding: 10px;
-  width: 75%;
-  color: var(--complementary-color);
-  border: none;
-  border-top: 2px solid var(--complementary-color);
-  border-bottom: 2px solid var(--complementary-color);
-  position: relative;
-  text-align: center;
-}
-
-#questions_amount {
-  width: 60%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-#questions_amount * {
-  margin: 10px 0px;
-  padding: 0;
-}
-
-#questions_amount_counter {
-  width: 50px;
-  aspect-ratio: 1/1;
-  font-size: 2rem;
-  border: 3px solid var(--text-color);
-  border-radius: 50%;
-  color: var(--text-color);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-} */
-
-#create-quiz_btn {
+/* #create-quiz_btn {
   width: 20%;
   aspect-ratio: 5/2;
   background-color: var(--complementary-color);
@@ -126,79 +62,5 @@ h3 {
   font-weight: bold;
   background-color: var(--highlight-color);
   transition: 0.3s ease-in-out;
-}
-
-/* @media only screen and (min-width: 500px) {
-  .label {
-    font-size: 1.4rem;
-  }
 } */
-
-/* Medium screen devices (800px and above) */
-@media only screen and (min-width: 800px) {
-  h3 {
-    font-size: 3rem;
-  }
-
-  /* section {
-    width: 100%;
-    margin-top: 15px;
-  }
-
-  .label {
-    font-size: 1.5rem;
-    padding: 10px;
-  }
-
-  #questions_amount_counter {
-    width: 50px;
-    aspect-ratio: 1/1;
-    font-size: 2rem;
-  } */
-}
-
-/* Big screen devices (1150px and above) */
-@media only screen and (min-width: 1150px) {
-  h3 {
-    font-size: 4rem;
-  }
-  /* 
-  section {
-    width: 100%;
-    margin-top: 15px;
-  }
-
-  .label {
-    font-size: 1.5rem;
-    padding: 10px;
-  }
-
-  .label::before {
-    content: "";
-    width: 16px;
-    aspect-ratio: 1/1;
-    background-color: var(--complementary-color);
-    rotate: 45deg;
-    position: absolute;
-    top: calc(50% - 8px);
-    left: -30px;
-  }
-
-  .label::after {
-    content: "";
-    width: 16px;
-    aspect-ratio: 1/1;
-    background-color: var(--complementary-color);
-    rotate: 45deg;
-    position: absolute;
-    top: calc(50% - 8px);
-    right: -30px;
-  }
-
-  #questions_amount_counter {
-    width: 50px;
-    aspect-ratio: 1/1;
-    font-size: 2rem;
-  } */
-}
 </style>

@@ -10,8 +10,8 @@
 </template>
 
 <script>
-import FormLabel from "../FormLabel.vue";
-import FormSection from "../FormSection.vue";
+import FormLabel from "../form/FormLabel.vue";
+import FormSection from "../form/FormSection.vue";
 import DifficultyRadioInput from "./DifficultySection/DifficultyRadioInput.vue";
 export default {
   name: "DifficultySection",

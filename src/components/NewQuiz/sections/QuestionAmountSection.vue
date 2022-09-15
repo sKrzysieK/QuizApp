@@ -17,8 +17,8 @@
 </template>
 
 <script>
-import FormSection from "../FormSection.vue";
-import FormLabel from "../FormLabel.vue";
+import FormSection from "../form/FormSection.vue";
+import FormLabel from "../form/FormLabel.vue";
 export default {
   name: "QuestionAmountSection",
   components: { FormSection, FormLabel },
