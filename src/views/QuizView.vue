@@ -2,7 +2,7 @@
   <div id="quiz" v-if="!getIsFinished">
     <Slogan>Question #{{ getCurrQuestionIndex + 1 }}</Slogan>
     <Question :question="getCurrQuestion.question" />
-    <div id="answer_box">
+    <!-- <div id="answer_box">
       <button
         class="answer_card"
         v-for="answer in getCurrQuestion.answers"
@@ -11,7 +11,8 @@
       >
         {{ answer.text }}
       </button>
-    </div>
+    </div> -->
+    <Answers :answers="getCurrQuestion.answers" />
   </div>
   <div v-else>aaaa</div>
 </template>
@@ -21,6 +22,7 @@
 import { mapActions, mapGetters } from "vuex";
 import Slogan from "@/components/Quiz/Slogan.vue";
 import Question from "@/components/Quiz/Question.vue";
+import Answers from "@/components/Quiz/Answers.vue";
 export default {
   data() {
     return {};
@@ -39,7 +41,7 @@ export default {
   methods: {
     ...mapActions([
       // "increamentCurrQuestionIndex",
-      "nextQuestion",
+      // "nextQuestion",
       "restoreState",
       // "fetchQuestions",
     ]),
@@ -63,7 +65,7 @@ export default {
     localStorage.removeItem("settings");
     localStorage.removeItem("score");
   },
-  components: { Slogan, Question },
+  components: { Slogan, Question, Answers },
 };
 </script>
 
@@ -72,11 +74,6 @@ export default {
 h1 {
   padding: 0;
 }
-
-/* h3 {
-  margin: 0;
-  font-size: 2.5rem;
-} */
 
 #quiz {
   padding: 0;
@@ -89,16 +86,7 @@ h1 {
   align-items: center;
 }
 
-#question {
-  width: calc(100% - 40px);
-  padding: 20px;
-  font-size: 1rem;
-  background-color: var(--complementary-color);
-  color: var(--primary-background-color);
-  font-weight: bold;
-}
-
-#answer_box {
+/* #answer_box {
   height: 400px;
   width: 100%;
   display: flex;
@@ -139,12 +127,6 @@ h1 {
 }
 
 @media only screen and (min-width: 500px) and (max-width: 800px) {
-  #question {
-    width: 50%;
-    padding: 40px;
-    font-size: 1.3rem;
-  }
-
   #answer_box {
     width: 480px;
     aspect-ratio: 1/1;
@@ -152,10 +134,7 @@ h1 {
     grid-template-rows: 50% 50%;
     grid-template-columns: 50% 50%;
     gap: 20px 20px;
-    /* flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap; */
+    
   }
 
   .answer_card {
@@ -163,21 +142,11 @@ h1 {
     max-height: 100%;
     font-size: 1.5rem;
     aspect-ratio: 1/1;
-    /* margin-right: 25px; */
     justify-self: center;
   }
 }
 
 @media only screen and (min-width: 800px) {
-  /* h3 {
-    font-size: 4rem;
-  } */
-
-  #question {
-    width: 50%;
-    font-size: 1.5rem;
-  }
-
   #answer_box {
     height: 400px;
     width: 100%;
@@ -196,16 +165,6 @@ h1 {
 }
 
 @media only screen and (min-width: 1150px) {
-  /* h3 {
-    font-size: 4rem;
-  } */
-
-  #question {
-    width: 50%;
-    padding: 40px;
-    font-size: 2rem;
-  }
-
   #answer_box {
     flex-direction: row;
   }
@@ -216,5 +175,5 @@ h1 {
     max-height: 100%;
     font-size: 2rem;
   }
-}
+} */
 </style>
