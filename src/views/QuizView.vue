@@ -1,7 +1,7 @@
 <template>
   <div id="quiz" v-if="!getIsFinished">
-    <h3>Question #{{ getCurrQuestionIndex + 1 }}</h3>
-    <div id="question">{{ getCurrQuestion.question }}</div>
+    <Slogan>Question #{{ getCurrQuestionIndex + 1 }}</Slogan>
+    <Question :question="getCurrQuestion.question" />
     <div id="answer_box">
       <button
         class="answer_card"
@@ -19,6 +19,8 @@
 
 <script>
 import { mapActions, mapGetters } from "vuex";
+import Slogan from "@/components/Quiz/Slogan.vue";
+import Question from "@/components/Quiz/Question.vue";
 export default {
   data() {
     return {};
@@ -61,6 +63,7 @@ export default {
     localStorage.removeItem("settings");
     localStorage.removeItem("score");
   },
+  components: { Slogan, Question },
 };
 </script>
 
@@ -70,10 +73,10 @@ h1 {
   padding: 0;
 }
 
-h3 {
+/* h3 {
   margin: 0;
   font-size: 2.5rem;
-}
+} */
 
 #quiz {
   padding: 0;
@@ -166,9 +169,9 @@ h3 {
 }
 
 @media only screen and (min-width: 800px) {
-  h3 {
+  /* h3 {
     font-size: 4rem;
-  }
+  } */
 
   #question {
     width: 50%;
@@ -193,9 +196,9 @@ h3 {
 }
 
 @media only screen and (min-width: 1150px) {
-  h3 {
+  /* h3 {
     font-size: 4rem;
-  }
+  } */
 
   #question {
     width: 50%;
