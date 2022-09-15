@@ -1,7 +1,7 @@
 <template>
   <h3>Create your own quiz!</h3>
   <create-quiz-form v-if="loaded">
-    <section>
+    <!-- <section>
       <p class="label">Select a category:</p>
       <select name="category" id="categories">
         <option
@@ -12,7 +12,8 @@
           {{ category.name }}
         </option>
       </select>
-    </section>
+    </section> -->
+    <CategorySection :categories="categories" />
     <section>
       <p class="label">Choose your difficulty level:</p>
       <div id="difficulty_container">
@@ -66,6 +67,7 @@
 <script>
 import LoadingSpinner from "@/components/ui/LoadingSpinner.vue";
 import CreateQuizForm from "@/components/NewQuiz/CreateQuizForm.vue";
+import CategorySection from "@/components/NewQuiz/sections/CategorySection.vue";
 import { mapActions } from "vuex";
 
 export default {
@@ -84,14 +86,11 @@ export default {
   },
   methods: {
     ...mapActions(["startQuiz"]),
-    async submitForm(e) {
-      await this.startQuiz(e);
-      this.$router.push("/quiz");
-    },
   },
   components: {
     LoadingSpinner,
     CreateQuizForm,
+    CategorySection,
   },
 };
 </script>
@@ -102,20 +101,6 @@ h3 {
   text-align: center;
   margin: 0;
   font-size: 2rem;
-}
-
-form {
-  box-sizing: border-box;
-  width: 100%;
-  aspect-ratio: 3/2;
-
-  border: 5px solid var(--complementary-color);
-  border-radius: 10px;
-
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
 }
 
 section {
@@ -196,10 +181,6 @@ section {
 }
 
 @media only screen and (min-width: 500px) {
-  form {
-    width: 60%;
-  }
-
   .label {
     font-size: 1.4rem;
   }
@@ -209,10 +190,6 @@ section {
 @media only screen and (min-width: 800px) {
   h3 {
     font-size: 3rem;
-  }
-  form {
-    width: 40%;
-    aspect-ratio: 3/2;
   }
 
   section {
@@ -237,10 +214,6 @@ section {
 @media only screen and (min-width: 1150px) {
   h3 {
     font-size: 4rem;
-  }
-  form {
-    width: 40%;
-    aspect-ratio: 3/2;
   }
 
   section {
