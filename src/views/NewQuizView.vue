@@ -1,20 +1,8 @@
 <template>
   <h3>Create your own quiz!</h3>
   <create-quiz-form v-if="loaded">
-    <!-- <section>
-      <p class="label">Select a category:</p>
-      <select name="category" id="categories">
-        <option
-          v-for="category in categories"
-          :key="category.id"
-          :value="category.id"
-        >
-          {{ category.name }}
-        </option>
-      </select>
-    </section> -->
     <CategorySection :categories="categories" />
-    <section>
+    <!-- <section>
       <p class="label">Choose your difficulty level:</p>
       <div id="difficulty_container">
         <label class="difficulty"
@@ -43,7 +31,8 @@
           />Hard</label
         >
       </div>
-    </section>
+    </section> -->
+    <DifficultySection />
     <section>
       <p class="label">How many questions do you want?</p>
       <div id="questions_amount">
@@ -69,6 +58,7 @@ import LoadingSpinner from "@/components/ui/LoadingSpinner.vue";
 import CreateQuizForm from "@/components/NewQuiz/CreateQuizForm.vue";
 import CategorySection from "@/components/NewQuiz/sections/CategorySection.vue";
 import { mapActions } from "vuex";
+import DifficultySection from "@/components/NewQuiz/sections/DifficultySection.vue";
 
 export default {
   data() {
@@ -91,6 +81,7 @@ export default {
     LoadingSpinner,
     CreateQuizForm,
     CategorySection,
+    DifficultySection,
   },
 };
 </script>
@@ -125,17 +116,10 @@ section {
   text-align: center;
 }
 
-#categories {
-  height: 50px;
-  background-color: var(--text-color);
-  color: var(--primary-background-color);
-  font-weight: bold;
-}
-
-.difficulty {
+/* .difficulty {
   display: inline;
   margin: 10px;
-}
+} */
 
 #questions_amount {
   width: 60%;

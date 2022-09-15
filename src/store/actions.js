@@ -25,6 +25,7 @@ const formatQuestions = (questions) => {
 }
 
 const startQuiz = async ({ commit }, e) => {
+    console.log('starting a new quiz...')
     //get and set settings
     const settings = Object.fromEntries(Array.from(new FormData(e.target)));
     commit("UPDATE_QUIZ_SETTINGS", settings)    //save in store
