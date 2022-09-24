@@ -32,6 +32,15 @@ const restoreState = ({commit}) => {
     commit("SET_IS_FINISHED_QUIZ", localStorage.getItem("isFinished") === 'true' ? true : false)
 }
 
+const resetState = ({ commit, state }) => {
+    commit("UPDATE_QUIZ_SETTINGS",{})
+    commit("UPDATE_QUESTIONS", [])
+    commit("SET_CURR_QUESTION_INDEX", 0)
+    commit("SET_SCORE", 0)
+    commit("SET_IS_FINISHED_QUIZ",false)
+    
+}
+
 const increamentCurrQuestionIndex = ({ commit, state }) => {
     localStorage.setItem('currQuestionIndex', (state.quiz.currQuestionIndex + 1).toString())
     commit("INCREMENT_CURR_QUESTION_INDEX")
@@ -66,5 +75,6 @@ export default {
     increamentCurrQuestionIndex,
     increamentScore,
     nextQuestion,
-    restoreState
+    restoreState,
+    resetState
 }

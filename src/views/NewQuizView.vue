@@ -18,6 +18,7 @@ import QuestionAmountSection from "@/components/NewQuiz/sections/QuestionAmountS
 import Slogan from "@/components/NewQuiz/Slogan.vue";
 import FormSubmitButton from "../components/NewQuiz/form/FormSubmitButton.vue";
 import clearLocalStorage from "@/helpers/clearLocalStorage";
+import { mapActions } from "vuex";
 
 export default {
   data() {
@@ -32,8 +33,11 @@ export default {
     this.categories = data.trivia_categories;
     this.categoriesLoaded = true;
     clearLocalStorage();
+    this.resetState();
   },
-  methods: {},
+  methods: {
+    ...mapActions(["resetState"]),
+  },
   components: {
     LoadingSpinner,
     CreateQuizForm,

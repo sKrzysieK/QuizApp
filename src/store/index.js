@@ -11,7 +11,6 @@ export default createStore({
       settings: {},
       questions: [],
       currQuestionIndex: 0,
-      cardColors: ['red','green','blue','yellow'],
       score: 0,
       isFinished: false
     }
