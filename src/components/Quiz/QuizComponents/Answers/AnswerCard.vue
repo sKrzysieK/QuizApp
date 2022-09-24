@@ -21,7 +21,7 @@ export default {
   justify-content: center;
   align-items: center;
   user-select: none;
-  transition: 0.3s ease-in-out;
+  transition: 0.4s ease-in-out;
 }
 
 .answer_card * {

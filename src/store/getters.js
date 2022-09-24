@@ -4,6 +4,8 @@ const getQuizSettings = (state) => state.quiz.settings;
 
 const getAllQuestions = state => state.quiz.questions;
 
+const getQuestionsAmount = state => state.quiz.questions.length
+
 const getCurrQuestionIndex = state => state.quiz.currQuestionIndex;
 
 const getCardColors = state => state.quiz.cardColors;
@@ -18,4 +20,4 @@ const getScore = state => state.quiz.score;
 
 const getIsFinished = state => state.quiz.isFinished
 
-export default { getAppName, getScore, getQuizSettings, getAllQuestions, getCurrQuestionIndex, getCurrQuestion, getCardColors, getIsFinished }
+export default { getAppName, getScore, getQuizSettings, getAllQuestions, getQuestionsAmount, getCurrQuestionIndex, getCurrQuestion, getCardColors, getIsFinished }

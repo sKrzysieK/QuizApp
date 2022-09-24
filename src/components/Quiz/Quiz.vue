@@ -1,5 +1,5 @@
 <template>
-  <div id="quiz" v-if="!getIsFinished">
+  <div v-if="!getIsFinished" class="quiz hidden">
     <Slogan>Question #{{ getCurrQuestionIndex + 1 }}</Slogan>
     <Question :question="getCurrQuestion.question" />
     <Answers :answers="getCurrQuestion.answers" />
@@ -11,6 +11,8 @@ import Slogan from "@/components/Quiz/QuizComponents/Slogan.vue";
 import Question from "@/components/Quiz/QuizComponents/Question.vue";
 import Answers from "@/components/Quiz/QuizComponents/Answers.vue";
 import { mapActions, mapGetters } from "vuex";
+import toggleQuestionTransition from "@/helpers/toggleQuestionTransition";
+
 export default {
   name: "Quiz",
   components: { Slogan, Question, Answers },
@@ -26,6 +28,13 @@ export default {
       this.restoreState();
     }
   },
+  mounted() {
+    toggleQuestionTransition();
+  },
+  updated() {
+    console.log("update");
+    toggleQuestionTransition();
+  },
 };
 </script>
 
@@ -34,7 +43,8 @@ h1 {
   padding: 0;
 }
 
-#quiz {
+.quiz {
+  opacity: 1;
   padding: 0;
   margin: 0;
   width: 100%;
@@ -43,5 +53,11 @@ h1 {
   flex-direction: column;
   justify-content: space-evenly;
   align-items: center;
+  transition: opacity 0.2s ease-in-out;
+}
+
+.hidden {
+  transition: opacity 3s ease-in-out;
+  opacity: 0;
 }
 </style>

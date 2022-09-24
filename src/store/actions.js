@@ -1,28 +1,4 @@
-const formatQuestions = (questions) => {
-    let questionId = 0;
-    questions.forEach( result => {
-        //add a question id
-        result.id = questionId
-        questionId++
-
-        //reformat answers
-        let answers = [result.correct_answer, ...result.incorrect_answers]
-        let answersMixed = [0, 0, 0, 0]
-        const answersLength = answers.length
-        while(answers.length > 0){
-            const randomIndex = Math.floor(Math.random() * answersLength);
-            if (answersMixed[randomIndex] === 0) {
-                answersMixed[randomIndex] = {
-                    text: answers.pop(), isCorrect: answers.length === 0
-                }
-            }
-        }
-        answersMixed = answersMixed.filter(answer => answer !== 0)
-        result.answers = answersMixed
-        
-    })
-    return questions
-}
+import formatQuestions from "@/helpers/formatQuestions";
 
 const startQuiz = async ({ commit }, e) => {
     console.log('starting a new quiz...')
@@ -56,53 +32,22 @@ const restoreState = ({commit}) => {
     commit("SET_IS_FINISHED_QUIZ", localStorage.getItem("isFinished") === 'true' ? true : false)
 }
 
-// const fetchQuestions = async ({ commit, state }) => {
-//     const settings = state.quiz.settings;
-
-//     const url = `https://opentdb.com/api.php?amount=${settings.questions_amount}&category=${settings.category}&difficulty=${settings.difficulty}`
-//     const res = await fetch(url);
-//     const { results, response_code } = await res.json();
-//     if(response_code !== 0) return
-    
-//     // let questionId = 0;
-//     // results.forEach( result => {
-//     //     //add a question id
-//     //     result.id = questionId
-//     //     questionId++
-//     //     //reformat answers
-//     //     let answers = [result.correct_answer, ...result.incorrect_answers]
-//     //     let answersMixed = [0, 0, 0, 0]
-//     //     const answersLength = answers.length
-//     //     while(answers.length > 0){
-//     //         const randomIndex = Math.floor(Math.random() * answersLength);
-//     //         if (answersMixed[randomIndex] === 0) {
-//     //             answersMixed[randomIndex] = {
-//     //                 text: answers.pop(), isCorrect: answers.length === 0
-//     //             }
-//     //         }
-//     //     }
-//     //     answersMixed = answersMixed.filter(answer => answer !== 0)
-//     //     result.answers = answersMixed
-        
-//     //     console.log(result)
-//     // })
-//     const questions = formatQuestions(results)
-//     commit("UPDATE_QUESTIONS", questions)
-// } 
-
 const increamentCurrQuestionIndex = ({ commit, state }) => {
     localStorage.setItem('currQuestionIndex', (state.quiz.currQuestionIndex + 1).toString())
     commit("INCREMENT_CURR_QUESTION_INDEX")
 }
 
 const increamentScore = ({ commit, state }) => {
-    console.log(localStorage.getItem('currQuestionIndex') +1)
     localStorage.setItem('currQuestionIndex', localStorage.getItem("currQuestionIndex") + 1)
     commit("INCREMENT_SCORE")
 }
 
 const nextQuestion = ({ commit, state }, isCorrect) => {
     if (state.quiz.currQuestionIndex + 1 === +state.quiz.questions.length) {
+        if (isCorrect) {
+             localStorage.setItem('score',(+localStorage.getItem('score') +1).toString())
+            commit("INCREMENT_SCORE")
+        }
         commit("SET_IS_FINISHED_QUIZ",true)
         localStorage.setItem('isFinished', 'true')
         return
@@ -118,7 +63,6 @@ const nextQuestion = ({ commit, state }, isCorrect) => {
 
 export default { 
     startQuiz,
-    // fetchQuestions, 
     increamentCurrQuestionIndex,
     increamentScore,
     nextQuestion,

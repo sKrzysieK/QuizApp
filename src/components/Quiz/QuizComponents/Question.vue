@@ -1,5 +1,5 @@
 <template>
-  <div id="question">{{ question }}</div>
+  <div id="question" v-html="question"></div>
 </template>
 
 <script>

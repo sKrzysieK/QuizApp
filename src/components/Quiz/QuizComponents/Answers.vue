@@ -3,9 +3,9 @@
     <AnswerCard
       v-for="answer in answers"
       :key="answer"
-      @click="nextQuestion(answer.isCorrect)"
+      @click="(e) => onCardClick(e, answer.isCorrect)"
+      v-html="answer.text"
     >
-      {{ answer.text }}
     </AnswerCard>
   </div>
 </template>
@@ -13,6 +13,7 @@
 <script>
 import { mapActions } from "vuex";
 import AnswerCard from "../QuizComponents/Answers/AnswerCard.vue";
+import toggleQuestionTransition from "../../../helpers/toggleQuestionTransition";
 export default {
   name: "Answers",
   props: {
@@ -23,6 +24,17 @@ export default {
   },
   methods: {
     ...mapActions(["nextQuestion"]),
+    onCardClick(e, isCorrect) {
+      if (isCorrect) e.target.style.backgroundColor = "green";
+      else e.target.style.backgroundColor = "red";
+      document
+        .querySelectorAll(".answer_card")
+        .forEach((answer) => (answer.style.pointerEvents = "none"));
+      toggleQuestionTransition();
+      setTimeout(() => {
+        this.nextQuestion(isCorrect);
+      }, 3000);
+    },
   },
   components: { AnswerCard },
 };

@@ -1,6 +1,6 @@
 <template>
   <Slogan>Create your own quiz!</Slogan>
-  <CreateQuizForm v-if="loaded">
+  <CreateQuizForm v-if="categoriesLoaded">
     <CategorySection :categories="categories" />
     <DifficultySection />
     <QuestionAmountSection />
@@ -17,11 +17,12 @@ import DifficultySection from "@/components/NewQuiz/sections/DifficultySection.v
 import QuestionAmountSection from "@/components/NewQuiz/sections/QuestionAmountSection.vue";
 import Slogan from "@/components/NewQuiz/Slogan.vue";
 import FormSubmitButton from "../components/NewQuiz/form/FormSubmitButton.vue";
+import clearLocalStorage from "@/helpers/clearLocalStorage";
 
 export default {
   data() {
     return {
-      loaded: false,
+      categoriesLoaded: false,
       categories: [],
     };
   },
@@ -29,7 +30,8 @@ export default {
     const res = await fetch("https://opentdb.com/api_category.php");
     const data = await res.json();
     this.categories = data.trivia_categories;
-    this.loaded = true;
+    this.categoriesLoaded = true;
+    clearLocalStorage();
   },
   methods: {},
   components: {

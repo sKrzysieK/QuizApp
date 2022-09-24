@@ -10,16 +10,18 @@ const routes = [
   {
     path: '/new-quiz',
     name: 'new-quiz',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/NewQuizView.vue')
+    component: () => import('../views/NewQuizView.vue')
   },
   {
     path: '/quiz',
     name: 'quiz',
     component: () => import('../views/QuizView.vue'),
-  }
+  },
+  {
+    path: '/:pathMatch(.*)*',
+    name: 'NotFound',
+    component: () => import('../views/NotFound.vue')
+  },
 ]
 
 const router = createRouter({
