@@ -1,19 +1,6 @@
-# quiz_app
+## Quiz App
 
-## Project setup
-```
-npm install
-```
+ A simple quiz solving game made using VueJS.
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
-
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+# Try it out here:
+https://quiz-app-pied-alpha.vercel.app/
